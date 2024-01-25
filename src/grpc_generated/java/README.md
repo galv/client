@@ -147,3 +147,54 @@ shape: 16
 16 + 16 = 32
 16 - 16 = 0
 ```
+
+## Notes on running SimpleSequenceJavaClient
+
+Follow the instrutions here to start a triton server with the sample models:
+https://docs.nvidia.com/deeplearning/triton-inference-server/user-guide/docs/getting_started/quickstart.html#run-on-system-with-gpus
+
+In particular, we don't need to modify the server code at all for the
+"simple_sequence" model, so just using the docker container is
+easiest. The GRPC port will be 8001.
+
+```
+# Start triton server above. Follow build instructions above for the Java code. Then:
+mvn exec:java -Dexec.mainClass=clients.SimpleSequenceJavaClient
+```
+
+tail of Expected output:
+
+```
+live: true
+
+Got message
+Got message
+12
+12
+Got message
+7
+Got message
+7
+Got message
+5
+Got message
+5
+Got message
+3
+Got message
+3
+Got message
+2
+Got message
+2
+Got message
+0
+Got message
+Got message
+1
+Finished ModelStreamInfer
+0
+Got message
+1
+Finished ModelStreamInfer
+```
